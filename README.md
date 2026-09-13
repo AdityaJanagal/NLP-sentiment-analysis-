@@ -218,5 +218,200 @@ A **Random Forest Classifier** was trained on the averaged Word2Vec representati
 
 ```python
 RandomForestClassifier(
-    cla
+    class_weight='balanced',
+    random_state=42
+)
 ```
+
+The classifier used **100 decision trees by default** and balanced class weights during training.
+
+## Model Performance
+
+The different text representation techniques and classifiers were evaluated using accuracy, precision, recall, F1-score, and classification reports.
+
+### Accuracy Comparison
+
+| Feature Representation | Model                   |   Accuracy |
+| ---------------------- | ----------------------- | ---------: |
+| Bag of Words           | Multinomial Naive Bayes | **85.08%** |
+| TF-IDF                 | Logistic Regression     | **84.96%** |
+| Word2Vec               | Random Forest           | **76.08%** |
+
+The best-performing approach in this notebook was **Bag of Words + Multinomial Naive Bayes**, achieving an accuracy of approximately **85.08%** on the test set.
+
+## Detailed Results
+
+### Bag of Words + Multinomial Naive Bayes
+
+```text
+Accuracy: 85.08%
+
+              precision    recall  f1-score   support
+
+           0       0.77      0.78      0.78       803
+           1       0.89      0.88      0.89      1597
+
+    accuracy                           0.85      2400
+   macro avg       0.83      0.83      0.83      2400
+weighted avg       0.85      0.85      0.85      2400
+```
+
+### TF-IDF + Logistic Regression
+
+```text
+Accuracy: 84.96%
+
+              precision    recall  f1-score   support
+
+           0       0.75      0.82      0.78       803
+           1       0.90      0.87      0.88      1597
+
+    accuracy                           0.85      2400
+   macro avg       0.83      0.84      0.83      2400
+weighted avg       0.85      0.85      0.85      2400
+```
+
+### Word2Vec + Random Forest
+
+```text
+Accuracy: 76.08%
+
+              precision    recall  f1-score   support
+
+           0       0.64      0.67      0.65       803
+           1       0.83      0.81      0.82      1597
+
+    accuracy                           0.76      2400
+   macro avg       0.73      0.74      0.73      2400
+weighted avg       0.76      0.76      0.76      2400
+```
+
+The Word2Vec representation produced 200 features per review, which were then used as input to the Random Forest classifier.
+
+## Key Observations
+
+* **BoW + Multinomial Naive Bayes** achieved the highest test accuracy of **85.08%**.
+* **TF-IDF + Logistic Regression** produced a very similar accuracy of **84.96%**.
+* **Word2Vec + Random Forest** achieved **76.08%** accuracy in this implementation.
+* The BoW model performed particularly well despite using a relatively simple representation.
+* Comparing multiple text representation techniques helped evaluate how different approaches affect sentiment classification performance.
+
+## Why Compare Multiple NLP Techniques?
+
+Different text representation techniques capture information in different ways:
+
+### Bag of Words
+
+Represents text based on word occurrence/frequency.
+
+**Advantages:**
+
+* Simple
+* Easy to understand
+* Effective for many text classification problems
+
+### TF-IDF
+
+Assigns higher importance to words that are important within a document but less common across the complete collection.
+
+**Advantages:**
+
+* Reduces the importance of very common words
+* Useful for document classification
+* Works well with linear models
+
+### Word2Vec
+
+Represents words as dense numerical vectors based on their contextual relationships.
+
+**Advantages:**
+
+* Captures semantic relationships between words
+* Produces dense vector representations
+* Can represent words in a continuous vector space
+
+## Evaluation Metrics
+
+The models were evaluated using:
+
+* Accuracy
+* Precision
+* Recall
+* F1-score
+* Classification report
+
+The evaluation was performed on the **2,400-sample test set**.
+
+## Skills Demonstrated
+
+This project demonstrates practical experience with:
+
+* Natural Language Processing
+* Text preprocessing
+* Regular expressions
+* Tokenization
+* Stopword removal
+* Lemmatization
+* Feature engineering
+* Bag of Words
+* N-grams
+* TF-IDF
+* Word embeddings
+* Word2Vec
+* Naive Bayes
+* Logistic Regression
+* Random Forest
+* Model evaluation
+* Classification metrics
+* Comparing machine learning approaches
+
+## Future Improvements
+
+Possible improvements to the project include:
+
+* Hyperparameter tuning for the machine learning models
+* Experimenting with different Word2Vec configurations
+* Using pretrained word embeddings
+* Trying more advanced NLP models
+* Handling sentiment labels using alternative rating thresholds
+* Experimenting with class balancing techniques
+* Comparing with deep learning approaches such as LSTM, GRU, or Transformers
+* Building an inference pipeline for classifying new reviews
+
+## Project Structure
+
+```text
+NLP-sentiment-analysis/
+│
+├── kindle_sentiment_analysis.ipynb
+│
+└── README.md
+```
+
+## Notebook
+
+The complete implementation and experiments are available in:
+
+`kindle_sentiment_analysis.ipynb`
+
+## Conclusion
+
+This project demonstrates an end-to-end NLP sentiment classification workflow, starting from raw Amazon Kindle reviews and progressing through text preprocessing, feature extraction, machine learning, and model evaluation.
+
+Three different approaches were compared:
+
+```text
+BoW       → Multinomial Naive Bayes → 85.08%
+TF-IDF    → Logistic Regression     → 84.96%
+Word2Vec  → Random Forest           → 76.08%
+```
+
+Among the approaches implemented in this notebook, **Bag of Words with Multinomial Naive Bayes achieved the best test accuracy of 85.08%**.
+
+---
+
+## Author
+
+**Aditya Janagal**
+
+GitHub: [AdityaJanagal](https://github.com/AdityaJanagal)
